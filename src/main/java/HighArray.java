@@ -37,8 +37,8 @@ public boolean delete(long value)
         return false;
     else // Значение найдено
     {
-        for(int k=j; k<nElems; k++) // Сдвиг последующих элементов
-            a[k] = a[k+1];
+        for(int k = j; k < nElems - 1; k++) // Сдвиг последующих элементов
+            a[k] = a[k + 1];
         nElems--; // Уменьшение размера
         return true;
     }
@@ -52,21 +52,30 @@ public boolean delete(long value)
     }
 
     public long getMax() {
+        long max = -1;
+
         if (nElems == 0) {
-            return -1;
+            return max;
         }
-        return a[nElems - 1];
-//        return (nElems == 0) ? -1 : a[nElems - 1];
+
+        for (int i = 0; i < a.length; i++) {
+            if (a[i] > max) {
+                max = a[i];
+            }
+        }
+
+        return max;
     }
 
     public void removeMax() {
-        int maxElementIndex = nElems - 1;
-        long[] newArray = new long[nElems - 1];
-        for (int i = 0; i < a.length - 1; i++) {
-            newArray[i] = a[i];
-        }
-        a = newArray;
-        nElems--;
+//        int maxElementIndex = nElems - 1;
+//        long[] newArray = new long[nElems - 1];
+//        for (int i = 0; i < a.length - 1; i++) {
+//            newArray[i] = a[i];
+//        }
+//        a = newArray;
+//        nElems--;
+        delete(getMax());
     }
 //-----------------------------------------------------------
 } // Конец класса HighArray
