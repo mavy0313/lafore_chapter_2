@@ -58,5 +58,15 @@ public boolean delete(long value)
         return a[nElems - 1];
 //        return (nElems == 0) ? -1 : a[nElems - 1];
     }
+
+    public void removeMax() {
+        int maxElementIndex = nElems - 1;
+        long[] newArray = new long[nElems - 1];
+        for (int i = 0; i < a.length - 1; i++) {
+            newArray[i] = a[i];
+        }
+        a = newArray;
+        nElems--;
+    }
 //-----------------------------------------------------------
 } // Конец класса HighArray
