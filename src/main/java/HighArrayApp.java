@@ -25,4 +25,18 @@ public class HighArrayApp {
         arr.delete(99);
         arr.display(); // Повторный вывод
     }
+
+    public long[] selectionSort(long[] array) {
+        HighArray arrayCopy = new HighArray(array.length);
+        for (int i = 0; i < array.length; i++) {
+            arrayCopy.insert(array[i]);
+        }
+
+        long[] result = new long[array.length];
+        for (int i = result.length - 1; i >= 0; i--) {
+            result[i] = arrayCopy.removeMax();
+        }
+
+        return result;
+    }
 }
