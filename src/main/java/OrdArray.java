@@ -36,37 +36,57 @@ public class OrdArray {
         }
     }
     //-----------------------------------------------------------
-    public void insert(long value) // Вставка элемента в массив
-    {
-        int j;
-        for (j = 0; j < nElems; j++) // Определение позиции вставки
-            if (a[j] > value) // (линейный поиск)
+    public void insert(long value) { // Вставка элемента в массив
+//        int j;
+//        for (j = 0; j < nElems; j++) {  // Определение позиции вставки
+//            if (a[j] > value) {// (линейный поиск)
+//                break;
+//            }
+//        }
+        int lowerBound = 0;
+        int upperBound = nElems - 1;
+        int j = 0;
+
+        while (true) {
+            if (lowerBound > upperBound) {
                 break;
-        for (int k = nElems; k > j; k--) // Перемещение последующих элементов
+            }
+
+            j = (lowerBound + upperBound) / 2;
+
+            if (value > a[j]) {
+                lowerBound = j + 1;
+                j++;
+            } else {
+                upperBound = j - 1;
+            }
+        }
+
+        for (int k = nElems; k > j; k--) { // Перемещение последующих элементов
             a[k] = a[k - 1];
+        }
         a[j] = value; // Вставка
         nElems++; // Увеличение размера
     }
     //-----------------------------------------------------------
-    public boolean delete(long value)
-    {
+    public boolean delete(long value) {
         int j = find(value);
-        if(j==nElems) // Найти не удалось
+        if (j == nElems) { // Найти не удалось
             return false;
-        else // Элемент найден
-        {
-            for(int k=j; k<nElems; k++) // Перемещение последующих элементов
-                a[k] = a[k+1];
+        } else { // Элемент найден
+            for (int k = j; k < nElems; k++) { // Перемещение последующих элементов
+                a[k] = a[k + 1];
+            }
             nElems--; // Уменьшение размера
             return true;
         }
     }
     //-----------------------------------------------------------
-    public void display() // Вывод содержимого массива
-    {
-        for(int j=0; j<nElems; j++) // Перебор всех элементов
+    public void display() { // Вывод содержимого массива
+        for (int j = 0; j < nElems; j++) { // Перебор всех элементов
             System.out.print(a[j] + " "); // Вывод текущего элемента
-        System.out.println("");
+        }
+        System.out.println();
     }
     //-----------------------------------------------------------
 }
