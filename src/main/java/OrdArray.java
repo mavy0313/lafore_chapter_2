@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class OrdArray {
 
     private long[] a; // Ссылка на массив a
@@ -87,6 +89,38 @@ public class OrdArray {
             System.out.print(a[j] + " "); // Вывод текущего элемента
         }
         System.out.println();
+    }
+
+    public long[] merge(long[] firstArray, long[] secondArray) {
+        int mergedLength = firstArray.length + secondArray.length;
+        long[] merged = new long[mergedLength];
+
+        //copy arrays into one
+
+        for (int i = 0; i < firstArray.length; i++) {
+            merged[i] = firstArray[i];
+        }
+
+        for (int i = 0; i < secondArray.length; i++) {
+            merged[firstArray.length + i] = secondArray[i];
+        }
+
+//        System.arraycopy(firstArray, 0, merged, 0, firstArray.length);
+//        System.arraycopy(secondArray, 0, merged, firstArray.length, secondArray.length);
+
+        //bubble sorting of merged array
+
+        for (int i = 0; i < mergedLength; i++) {
+            for (int j = i + 1; j < mergedLength; j++) {
+                if (merged[i] > merged[j]) {
+                    long temp = merged[i];
+                    merged[i] = merged[j];
+                    merged[j] = temp;
+                }
+            }
+        }
+
+        return merged;
     }
     //-----------------------------------------------------------
 }
