@@ -59,5 +59,31 @@ public class HighArrayTest {
         assertArrayEquals(expectedArray, highArray.getArray());
     }
 
+    @Test
+    public void shouldRemoveDuplicatesEmptyArray() {
+        HighArray highArray = new HighArray(0);
 
+        long[] expectedArray = new long[0];
+
+        highArray.noDups();
+
+        assertArrayEquals(expectedArray, highArray.getArray());
+    }
+
+    @Test
+    public void shouldRemoveDuplicates() {
+        HighArray highArray = new HighArray(6);
+        highArray.insert(1);
+        highArray.insert(2);
+        highArray.insert(7);
+        highArray.insert(1);
+        highArray.insert(1);
+        highArray.insert(7);
+
+        long[] expectedArray = new long[]{1, 2, 7};
+
+        highArray.noDups();
+
+        assertArrayEquals(expectedArray, highArray.getArray());
+    }
 }

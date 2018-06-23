@@ -1,3 +1,7 @@
+import java.util.Arrays;
+
+import static java.util.Arrays.*;
+
 public class HighArray
 {
     private long[] a; // Ссылка на массив a
@@ -95,6 +99,35 @@ public class HighArray
 
     public long[] getArray() {
         return a;
+    }
+
+    public void noDups() {
+        long[] copy = copyOf(a, a.length);
+
+        for (int i = 0; i < copy.length; i++) {
+            for (int j = i + 1; j < copy.length; j++) {
+                if (copy[i] == copy[j]) {
+                    copy[j] = -1;
+                }
+            }
+        }
+
+        int countMinusOne = 0;
+        for (int i = 0; i < copy.length; i++) {
+            if (copy[i] == -1) {
+                countMinusOne++;
+            }
+        }
+
+        int resultLength = copy.length - countMinusOne;
+        long[] result = new long[resultLength];
+        for (int i = 0; i < copy.length; i++) {
+            if (copy[i] != -1) {
+                result[i] = copy[i];
+            }
+        }
+        nElems = resultLength;
+        a = result;
     }
 //-----------------------------------------------------------
 } // Конец класса HighArray
